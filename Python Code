@@ -1,0 +1,40 @@
+from sympy import symbols
+
+# A = [[alpha1, beta1], [gamma1, delta1], [zeta1, eta1]]
+# Definition of Symbolic Variables
+alpha, beta, gamma, delta = symbols('alpha beta gamma delta')
+
+# Definition of Functions
+def compute_kA(alpha1, beta1, gamma1, delta1, zeta1, eta1, k_value):
+    if k_value > 0:
+        kA = [
+            [k_value * alpha1, k_value * beta1],
+            [k_value * gamma1, k_value * delta1],
+            [k_value * zeta1, k_value * eta1]
+        ]
+    elif k_value < 0:
+        kA = [
+            [k_value * eta1, k_value * zeta1],
+            [k_value * delta1, k_value * gamma1],
+            [k_value * beta1, k_value * alpha1]
+        ]
+    else:
+        raise ValueError("k must be a non-zero real number.")
+    
+    return kA
+
+# Replace input values here for computation
+alpha1 = 22 + 0 * beta
+beta1 = 36.2857 - 14.2857 * beta
+gamma1 = 17.7143 + 14.2857 * beta
+delta1 = 40.5714 - 8.5714 * beta
+zeta1 = 25.7143 + 14.2857 * beta
+eta1 = 40 + 0 * beta
+k_value = -2  
+
+# Compute k.A
+kA = compute_kA(alpha1, beta1, gamma1, delta1, zeta1, eta1, k_value)
+
+# Display the result
+for interval in kA:
+    print("Interval:", interval)
